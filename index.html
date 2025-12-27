@@ -3,10 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Эвакуатор в Алматы 24/7 | Срочная помощь на дороге</title>
-    <meta name="description" content="Услуги эвакуатора в Алматы. Круглосуточно 24/7. Быстрая подача, аккуратная перевозка авто и спецтехники. Звоните: +7 747 464 0078">
+    <title>Эвакуатор Алматы 24/7 | Срочная помощь на дороге</title>
+    <meta name="description" content="Услуги эвакуатора в Алматы круглосуточно. Быстрая подача за 20 минут. Перевозка легковых авто, джипов и спецтехники. Звоните: +7 747 464 0078">
     
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
@@ -14,517 +16,342 @@
 
     <style>
         :root {
-            --primary: #FFC107; /* Желтый (спецтехника) */
-            --accent: #FF3D00; /* Красный (срочность) */
-            --dark: #121212;
-            --dark-gray: #1e1e1e;
-            --light: #ffffff;
-            --text-gray: #b0b0b0;
+            /* Используем тот же оранжевый, он ассоциируется с "мигалками" и спецтехникой */
+            --primary-orange: #FF9800; 
+            --dark-bg: #111111;
+            --dark-surface: #1E1E1E;
         }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
+        
         body {
-            font-family: 'Montserrat', sans-serif;
-            background-color: var(--dark);
-            color: var(--light);
-            line-height: 1.6;
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--dark-bg);
+            color: white;
             overflow-x: hidden;
         }
 
-        a { text-decoration: none; color: inherit; transition: 0.3s; }
-        ul { list-style: none; }
-
-        /* --- UI Elements --- */
-        .btn {
-            display: inline-block;
-            padding: 15px 35px;
-            font-weight: 800;
+        h1, h2, h3, .btn-text {
+            font-family: 'Oswald', sans-serif;
             text-transform: uppercase;
-            border-radius: 5px;
-            cursor: pointer;
-            border: none;
-            position: relative;
-            overflow: hidden;
-            letter-spacing: 1px;
-            transition: all 0.3s ease;
         }
+
+        /* Герой-секция: подгрузит images/tow-hero.jpg */
+        .hero-section {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url('images/tow-hero.jpg');
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            min-height: 100vh;
+        }
+
+        .text-accent { color: var(--primary-orange); }
+        .bg-accent { background-color: var(--primary-orange); }
+        .border-accent { border-color: var(--primary-orange); }
 
         .btn-primary {
-            background-color: var(--primary);
-            color: var(--dark);
+            background-color: var(--primary-orange);
+            color: #000;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            font-weight: bold;
         }
-
         .btn-primary:hover {
-            background-color: #ffca2c;
+            background-color: #e68900;
             transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(255, 193, 7, 0.3);
+            box-shadow: 0 10px 30px rgba(255, 152, 0, 0.4); /* Тень чуть ярче для срочности */
         }
 
-        .btn-urgent {
-            background-color: var(--accent);
+        .btn-outline {
+            border: 2px solid var(--primary-orange);
             color: white;
-            animation: pulse 2s infinite;
+            transition: all 0.3s ease;
         }
-        
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(255, 61, 0, 0.7); }
-            70% { box-shadow: 0 0 0 15px rgba(255, 61, 0, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(255, 61, 0, 0); }
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            font-weight: 800;
-        }
-        .section-title span { color: var(--primary); }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* --- Header --- */
-        header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(18, 18, 18, 0.95);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            padding: 15px 0;
-            border-bottom: 2px solid var(--primary);
-        }
-
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: var(--light);
-        }
-        .logo i { color: var(--primary); margin-right: 10px; }
-
-        .header-phone {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .phone-link {
-            font-size: 1.2rem;
-            font-weight: 700;
-        }
-
-        /* --- Hero Section --- */
-        .hero {
-            height: 100vh;
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1562920624-9b8849646b5d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed; /* Parallax effect */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding-top: 80px;
-        }
-
-        .hero-content h1 {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-            line-height: 1.2;
-        }
-        .hero-content p {
-            font-size: 1.5rem;
-            color: var(--text-gray);
-            margin-bottom: 40px;
-        }
-
-        /* --- Services --- */
-        .services {
-            padding: 80px 0;
-            background-color: var(--dark-gray);
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            margin-top: 50px;
+        .btn-outline:hover {
+            background-color: var(--primary-orange);
+            color: black;
         }
 
         .service-card {
-            background: var(--dark);
-            padding: 30px;
-            border-radius: 10px;
-            text-align: center;
-            border: 1px solid #333;
-            transition: 0.3s;
+            background-color: var(--dark-surface);
+            transition: all 0.4s ease;
+            border-bottom: 3px solid transparent;
         }
-
         .service-card:hover {
-            border-color: var(--primary);
             transform: translateY(-10px);
+            border-bottom: 3px solid var(--primary-orange);
+            background-color: #252525;
+        }
+        .service-icon {
+            transition: transform 0.5s ease;
+        }
+        .service-card:hover .service-icon {
+            transform: rotateY(180deg) scale(1.1);
         }
 
-        .service-card i {
-            font-size: 3rem;
-            color: var(--primary);
-            margin-bottom: 20px;
-        }
-
-        /* --- Benefits --- */
-        .benefits {
-            padding: 80px 0;
-            background: url('https://www.transparenttextures.com/patterns/carbon-fibre.png'), var(--dark);
-        }
-
-        .benefits-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-        }
-
-        .benefit-item {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            padding: 20px;
-            background: rgba(255,255,255,0.05);
-            border-radius: 8px;
-        }
-        .benefit-item i {
-            font-size: 2rem;
-            color: var(--primary);
-        }
-
-        /* --- Process --- */
-        .process {
-            padding: 80px 0;
-            background-color: var(--dark-gray);
-        }
-        .process-steps {
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            margin-top: 50px;
+        .gallery-item {
+            overflow: hidden;
             position: relative;
         }
-        /* Линия маршрута */
-        .process-steps::before {
-            content: '';
-            position: absolute;
-            top: 40px;
-            left: 50px;
-            right: 50px;
-            height: 2px;
-            background: var(--primary);
-            z-index: 0;
-            opacity: 0.3;
-        }
-
-        .step {
-            position: relative;
-            z-index: 1;
-            text-align: center;
-            width: 220px;
-            margin: 0 auto 30px;
-        }
-
-        .step-icon {
-            width: 80px;
-            height: 80px;
-            background: var(--dark);
-            border: 2px solid var(--primary);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 20px;
-            font-size: 1.5rem;
-            color: var(--primary);
-        }
-
-        /* --- Form --- */
-        .contact-section {
-            padding: 80px 0;
-            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
-            background-size: cover;
-            background-attachment: fixed;
-        }
-
-        .form-box {
-            max-width: 600px;
-            margin: 0 auto;
-            background: rgba(30, 30, 30, 0.95);
-            padding: 40px;
-            border-radius: 10px;
-            border-top: 5px solid var(--primary);
-        }
-
-        .form-group { margin-bottom: 20px; }
-        
-        .form-control {
+        .gallery-item img {
+            transition: transform 0.5s ease;
             width: 100%;
-            padding: 15px;
-            background: #333;
-            border: 1px solid #444;
-            color: white;
-            border-radius: 5px;
-            font-family: inherit;
+            height: 100%;
+            object-fit: cover;
+        }
+        .gallery-item:hover img {
+            transform: scale(1.1);
         }
         
-        .form-control:focus {
-            outline: none;
-            border-color: var(--primary);
-            background: #444;
+        /* Пульсация кнопки звонка - критично для эвакуатора */
+        .pulse-animation { animation: pulse-btn 2s infinite; }
+        @keyframes pulse-btn {
+            0% { box-shadow: 0 0 0 0 rgba(255, 152, 0, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(255, 152, 0, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 152, 0, 0); }
         }
-
-        /* --- Footer --- */
-        footer {
-            background: #000;
-            padding: 50px 0;
-            text-align: center;
-        }
-        
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-bottom: 20px;
-        }
-        .social-btn {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: #333;
-            font-size: 1.5rem;
-        }
-        .social-btn.wa { background: #25D366; color: white; }
-        .social-btn.phone { background: var(--primary); color: black; }
-
-        /* --- Mobile Responsive --- */
-        @media (max-width: 768px) {
-            .hero-content h1 { font-size: 2.2rem; }
-            .process-steps::before { display: none; }
-            .nav-container { flex-direction: column; gap: 10px; }
-            .header-phone span { display: none; } /* Скрываем текст, оставляем иконку/кнопку на очень малых */
-        }
-
-        /* Floating Call Button for Mobile */
-        .floating-cta {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 999;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-        .float-btn {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-            color: white;
-        }
-        .float-wa { background: #25D366; }
-        .float-call { background: var(--accent); animation: pulse 2s infinite; }
-
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="container nav-container">
-            <div class="logo">
-                <i class="fas fa-truck-pickup"></i> ЭВАКУАТОР <span style="color:var(--primary)">АЛМАТЫ</span>
+    <nav class="fixed w-full z-50 bg-black/95 backdrop-blur-sm border-b border-gray-800 py-4">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <div class="text-2xl font-bold tracking-wider text-white">
+                TOWING<span class="text-accent">.KZ</span>
             </div>
-            <div class="header-phone">
-                <a href="tel:+77474640078" class="phone-link"><i class="fas fa-phone-alt"></i> +7 747 464 0078</a>
-                <a href="https://wa.me/77474640078" class="btn btn-primary" style="padding: 10px 20px; font-size: 0.9rem;">WhatsApp</a>
-            </div>
-        </div>
-    </header>
-
-    <section class="hero">
-        <div class="container hero-content" data-aos="fade-up">
-            <h1>ЭВАКУАТОР В АЛМАТЫ <span style="color:var(--primary)">24/7</span></h1>
-            <p>Быстро приедем. Аккуратно перевезем. Любая сложность.</p>
-            <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
-                <a href="tel:+77474640078" class="btn btn-urgent"><i class="fas fa-phone"></i> Позвонить сейчас</a>
-                <a href="#form" class="btn btn-primary">Вызвать эвакуатор</a>
+            <div class="flex items-center gap-6">
+                <div class="hidden md:flex flex-col text-right">
+                    <span class="text-xs text-red-500 font-bold animate-pulse">● Свободная машина рядом</span>
+                    <a href="tel:+77474640078" class="text-xl font-bold hover:text-accent transition">+7 747 464 0078</a>
+                </div>
+                <a href="tel:+77474640078" class="hidden md:block btn-primary px-6 py-2 rounded uppercase text-sm pulse-animation">
+                    Вызвать сейчас
+                </a>
+                <a href="tel:+77474640078" class="md:hidden w-10 h-10 bg-accent rounded-full flex items-center justify-center text-black pulse-animation">
+                    <i class="fas fa-phone"></i>
+                </a>
             </div>
         </div>
-    </section>
+    </nav>
 
-    <section class="services">
-        <div class="container">
-            <h2 class="section-title" data-aos="fade-up">Наши <span>Услуги</span></h2>
-            <div class="services-grid">
-                <div class="service-card" data-aos="zoom-in" data-aos-delay="100">
-                    <i class="fas fa-car"></i>
-                    <h3>Легковые авто</h3>
-                    <p>Бережная эвакуация легковых автомобилей методом полной погрузки.</p>
+    <section class="hero-section flex items-center justify-center relative">
+        <div class="container mx-auto px-4 relative z-10 text-center">
+            <div data-aos="fade-up" data-aos-duration="1000">
+                <div class="inline-block bg-accent/20 border border-accent rounded px-4 py-1 mb-6 backdrop-blur-md">
+                    <p class="text-accent tracking-wider font-bold uppercase text-sm">Алматы и область • 24/7</p>
                 </div>
-                <div class="service-card" data-aos="zoom-in" data-aos-delay="200">
-                    <i class="fas fa-truck-monster"></i>
-                    <h3>Внедорожники</h3>
-                    <p>Мощные эвакуаторы для джипов и тяжелых внедорожников.</p>
-                </div>
-                <div class="service-card" data-aos="zoom-in" data-aos-delay="300">
-                    <i class="fas fa-car-crash"></i>
-                    <h3>После ДТП</h3>
-                    <p>Эвакуация авто с заблокированными колесами или повреждениями.</p>
-                </div>
-                <div class="service-card" data-aos="zoom-in" data-aos-delay="400">
-                    <i class="fas fa-tractor"></i>
-                    <h3>Спецтехника</h3>
-                    <p>Перевозка погрузчиков, катков и другой строительной техники.</p>
+                <h1 class="text-5xl md:text-8xl font-bold mb-6 leading-tight uppercase">
+                    Эвакуатор <br> <span class="text-accent">Срочно</span>
+                </h1>
+                <p class="text-xl md:text-2xl text-gray-300 mb-10 max-w-2xl mx-auto">
+                    Подача машины за 20 минут. Бережная погрузка любой сложности. Цены ниже рыночных.
+                </p>
+                <div class="flex flex-col md:flex-row gap-4 justify-center">
+                    <a href="tel:+77474640078" class="btn-primary px-12 py-5 rounded text-xl uppercase tracking-wider font-bold pulse-animation">
+                        <i class="fas fa-phone-alt mr-2"></i> +7 747 464 0078
+                    </a>
+                    <a href="https://wa.me/77474640078" class="btn-outline px-12 py-5 rounded text-xl uppercase tracking-wider bg-transparent flex items-center justify-center gap-2">
+                        <i class="fab fa-whatsapp"></i> Написать
+                    </a>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="benefits">
-        <div class="container">
-            <h2 class="section-title" data-aos="fade-right">Почему <span>Выбирают Нас</span></h2>
-            <div class="benefits-grid">
-                <div class="benefit-item" data-aos="fade-left">
-                    <i class="fas fa-clock"></i>
-                    <div>
-                        <h4>Работаем 24/7</h4>
-                        <p>Круглосуточно, без выходных и праздников по всему Алматы.</p>
+    <section class="py-20 bg-[#111]">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-16" data-aos="fade-up">
+                Что мы <span class="text-accent">Эвакуируем</span>
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="service-card p-8 rounded-lg text-center" data-aos="fade-up" data-aos-delay="100">
+                    <div class="text-5xl text-accent mb-6 service-icon">
+                        <i class="fas fa-car-side"></i>
                     </div>
+                    <h3 class="text-xl font-bold mb-3">Легковые авто</h3>
+                    <p class="text-gray-400 text-sm">Эвакуация седанов и хэтчбеков с любыми повреждениями.</p>
                 </div>
-                <div class="benefit-item" data-aos="fade-left" data-aos-delay="100">
-                    <i class="fas fa-tachometer-alt"></i>
-                    <div>
-                        <h4>Быстрый выезд</h4>
-                        <p>Подача эвакуатора от 20 минут. Машины во всех районах.</p>
+                <div class="service-card p-8 rounded-lg text-center" data-aos="fade-up" data-aos-delay="200">
+                    <div class="text-5xl text-accent mb-6 service-icon">
+                        <i class="fas fa-truck-monster"></i>
                     </div>
+                    <h3 class="text-xl font-bold mb-3">Джипы и SUV</h3>
+                    <p class="text-gray-400 text-sm">Мощные эвакуаторы для тяжелых внедорожников.</p>
                 </div>
-                <div class="benefit-item" data-aos="fade-left" data-aos-delay="200">
-                    <i class="fas fa-user-shield"></i>
-                    <div>
-                        <h4>Опытные водители</h4>
-                        <p>Стаж работы более 5 лет. Гарантия безопасности авто.</p>
+                <div class="service-card p-8 rounded-lg text-center" data-aos="fade-up" data-aos-delay="300">
+                    <div class="text-5xl text-accent mb-6 service-icon">
+                        <i class="fas fa-snowplow"></i> </div>
+                    <h3 class="text-xl font-bold mb-3">Кювет / Снег</h3>
+                    <p class="text-gray-400 text-sm">Вытянем из кювета, грязи, снега. Сложная погрузка.</p>
+                </div>
+                <div class="service-card p-8 rounded-lg text-center" data-aos="fade-up" data-aos-delay="400">
+                    <div class="text-5xl text-accent mb-6 service-icon">
+                        <i class="fas fa-tractor"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Спецтехника</h3>
+                    <p class="text-gray-400 text-sm">Перевозка погрузчиков, катков и оборудования до 5 тонн.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 bg-zinc-900">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right">
+                    <h2 class="text-4xl font-bold mb-8">Почему звонят <span class="text-accent">Нам</span></h2>
+                    <ul class="space-y-6">
+                        <li class="flex items-start">
+                            <i class="fas fa-stopwatch text-accent text-2xl mr-4 mt-1"></i>
+                            <div>
+                                <h4 class="text-xl font-bold">Приедем за 20 минут</h4>
+                                <p class="text-gray-400">Машины дежурят во всех районах Алматы. Приедем быстрее всех.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-shield-alt text-accent text-2xl mr-4 mt-1"></i>
+                            <div>
+                                <h4 class="text-xl font-bold">100% Безопасность</h4>
+                                <p class="text-gray-400">Полная материальная ответственность за ваше авто при погрузке.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-moon text-accent text-2xl mr-4 mt-1"></i>
+                            <div>
+                                <h4 class="text-xl font-bold">Круглосуточно 24/7</h4>
+                                <p class="text-gray-400">Работаем в дождь, снег, праздники и выходные. Без наценок ночью.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-tags text-accent text-2xl mr-4 mt-1"></i>
+                            <div>
+                                <h4 class="text-xl font-bold">Честная цена</h4>
+                                <p class="text-gray-400">Называем окончательную стоимость по телефону. Никаких доплат.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="relative h-96 rounded-xl overflow-hidden shadow-2xl border-4 border-gray-800" data-aos="fade-left">
+                     <img src="images/tow-about.jpg" alt="Погрузка эвакуатор" class="w-full h-full object-cover">
+                    <div class="absolute bottom-4 right-4 bg-red-600 text-white px-6 py-3 font-bold rounded animate-bounce">
+                        <i class="fas fa-phone mr-2"></i> SOS
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="process">
-        <div class="container">
-            <h2 class="section-title" data-aos="fade-up">Как мы <span>Работаем</span></h2>
-            <div class="process-steps">
-                <div class="step" data-aos="flip-up" data-aos-delay="100">
-                    <div class="step-icon"><i class="fas fa-phone-volume"></i></div>
-                    <h3>1. Звонок</h3>
-                    <p>Вы звоните нам или оставляете заявку на сайте.</p>
+    <section class="py-20 bg-[#111]">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-12">Наши <span class="text-accent">Работы</span></h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="gallery-item h-64 rounded-lg bg-gray-800" data-aos="zoom-in">
+                    <img src="images/tow-1.jpg" class="w-full h-full object-cover opacity-80 hover:opacity-100" alt="Эвакуация 1">
                 </div>
-                <div class="step" data-aos="flip-up" data-aos-delay="200">
-                    <div class="step-icon"><i class="fas fa-map-marker-alt"></i></div>
-                    <h3>2. Выезд</h3>
-                    <p>Водитель выезжает к вам немедленно.</p>
+                <div class="gallery-item h-64 rounded-lg bg-gray-800" data-aos="zoom-in" data-aos-delay="100">
+                    <img src="images/tow-2.jpg" class="w-full h-full object-cover opacity-80 hover:opacity-100" alt="Эвакуация 2">
                 </div>
-                <div class="step" data-aos="flip-up" data-aos-delay="300">
-                    <div class="step-icon"><i class="fas fa-truck-loading"></i></div>
-                    <h3>3. Погрузка</h3>
-                    <p>Аккуратно грузим автомобиль на платформу.</p>
-                </div>
-                <div class="step" data-aos="flip-up" data-aos-delay="400">
-                    <div class="step-icon"><i class="fas fa-check-circle"></i></div>
-                    <h3>4. Доставка</h3>
-                    <p>Перевозим авто в указанную точку Алматы.</p>
+                <div class="gallery-item h-64 rounded-lg bg-gray-800" data-aos="zoom-in" data-aos-delay="200">
+                    <img src="images/tow-3.jpg" class="w-full h-full object-cover opacity-80 hover:opacity-100" alt="Эвакуация 3">
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="contact-section" id="form">
-        <div class="container">
-            <div class="form-box" data-aos="zoom-in-up">
-                <h2 style="text-align: center; margin-bottom: 20px;">Вызвать <span style="color:var(--primary)">Эвакуатор</span></h2>
-                <form id="towForm">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Ваше имя" required>
+    <section class="py-16 bg-zinc-900 border-t border-gray-800">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">Как мы <span class="text-accent">Работаем</span></h2>
+            <div class="flex flex-col md:flex-row justify-between items-center relative gap-8 md:gap-0">
+                
+                <div class="w-full md:w-1/4 text-center relative z-10" data-aos="fade-up">
+                    <div class="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center text-2xl font-bold text-white mx-auto mb-4 shadow-lg shadow-red-600/40">
+                        <i class="fas fa-phone-alt"></i>
                     </div>
-                    <div class="form-group">
-                        <input type="tel" class="form-control" placeholder="Телефон (+7...)" required>
+                    <h4 class="font-bold text-lg">Вы звоните</h4>
+                    <p class="text-gray-400 text-sm">Говорите где вы</p>
+                </div>
+                <div class="hidden md:block text-4xl text-gray-700"><i class="fas fa-chevron-right"></i></div>
+                
+                <div class="w-full md:w-1/4 text-center relative z-10" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-16 h-16 bg-accent rounded-full flex items-center justify-center text-2xl font-bold text-black mx-auto mb-4">
+                        <i class="fas fa-truck-pickup"></i>
                     </div>
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Откуда забрать (Адрес в Алматы)" required>
+                    <h4 class="font-bold text-lg">Мы выезжаем</h4>
+                    <p class="text-gray-400 text-sm">Сразу после звонка</p>
+                </div>
+                <div class="hidden md:block text-4xl text-gray-700"><i class="fas fa-chevron-right"></i></div>
+
+                <div class="w-full md:w-1/4 text-center relative z-10" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-16 h-16 bg-accent rounded-full flex items-center justify-center text-2xl font-bold text-black mx-auto mb-4">
+                        <i class="fas fa-check"></i>
                     </div>
-                    <div class="form-group">
-                        <textarea class="form-control" rows="3" placeholder="Комментарий (марка авто, характер поломки)"></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary" style="width: 100%;">Отправить заявку</button>
-                </form>
+                    <h4 class="font-bold text-lg">Погрузка</h4>
+                    <p class="text-gray-400 text-sm">Аккуратно грузим</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <footer>
-        <div class="container">
-            <div class="footer-links">
-                <a href="https://wa.me/77474640078" class="social-btn wa"><i class="fab fa-whatsapp"></i></a>
-                <a href="tel:+77474640078" class="social-btn phone"><i class="fas fa-phone-alt"></i></a>
+    <section id="contact" class="py-20 bg-[#0a0a0a]">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 bg-[#1a1a1a] rounded-2xl overflow-hidden shadow-2xl">
+                <div class="p-10 flex flex-col justify-center bg-[#222]">
+                    <h2 class="text-3xl font-bold mb-6">Нужна <span class="text-accent">Помощь?</span></h2>
+                    <p class="text-gray-400 mb-8">Если ситуация экстренная, лучше позвоните нам прямо сейчас. Мы на связи круглосуточно.</p>
+                    
+                    <a href="tel:+77474640078" class="flex items-center gap-4 mb-6 group">
+                        <div class="w-16 h-16 bg-accent rounded-full flex items-center justify-center text-black text-2xl group-hover:scale-110 transition">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-400">Круглосуточный диспетчер</p>
+                            <p class="text-3xl font-bold text-white group-hover:text-accent transition">+7 747 464 0078</p>
+                        </div>
+                    </a>
+
+                    <div class="flex gap-4 mt-4">
+                        <a href="https://wa.me/77474640078" class="flex-1 bg-green-600 hover:bg-green-700 text-white py-4 text-center rounded font-bold transition flex items-center justify-center gap-2">
+                            <i class="fab fa-whatsapp text-xl"></i> Скинуть локацию
+                        </a>
+                    </div>
+                </div>
+
+                <div class="p-10 bg-accent/5">
+                    <h3 class="text-xl font-bold mb-4">Рассчитать стоимость</h3>
+                    <form action="#" class="space-y-4">
+                        <div>
+                            <input type="text" placeholder="Ваше имя" class="w-full bg-[#111] border border-gray-700 rounded p-4 text-white focus:border-accent focus:outline-none transition">
+                        </div>
+                        <div>
+                            <input type="tel" placeholder="Телефон" class="w-full bg-[#111] border border-gray-700 rounded p-4 text-white focus:border-accent focus:outline-none transition">
+                        </div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <input type="text" placeholder="Откуда? (Улица)" class="w-full bg-[#111] border border-gray-700 rounded p-4 text-white focus:border-accent focus:outline-none transition">
+                            <input type="text" placeholder="Куда везти?" class="w-full bg-[#111] border border-gray-700 rounded p-4 text-white focus:border-accent focus:outline-none transition">
+                        </div>
+                        <div>
+                            <textarea rows="2" placeholder="Какая машина? (Пример: Toyota Camry, заблокированы колеса)" class="w-full bg-[#111] border border-gray-700 rounded p-4 text-white focus:border-accent focus:outline-none transition"></textarea>
+                        </div>
+                        <button type="submit" class="w-full btn-primary py-4 rounded font-bold uppercase tracking-wider text-black mt-2 shadow-lg shadow-orange-500/20">
+                            Вызвать эвакуатор
+                        </button>
+                    </form>
+                </div>
             </div>
-            <p style="font-size: 1.2rem; font-weight: bold; margin-bottom: 10px;">+7 747 464 0078</p>
-            <p style="color: gray;">г. Алматы. Работаем 24/7</p>
-            <p style="color: #555; font-size: 0.8rem; margin-top: 20px;">&copy; 2025 Услуги Эвакуатора</p>
+        </div>
+    </section>
+
+    <footer class="bg-black py-8 border-t border-gray-900 text-center text-gray-500 text-sm">
+        <div class="container mx-auto">
+            <p>&copy; 2024 Эвакуатор Алматы 24/7. Быстрая помощь на дорогах.</p>
         </div>
     </footer>
 
-    <div class="floating-cta">
-        <a href="https://wa.me/77474640078" class="float-btn float-wa"><i class="fab fa-whatsapp"></i></a>
-        <a href="tel:+77474640078" class="float-btn float-call"><i class="fas fa-phone"></i></a>
-    </div>
-
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        // Init Animation Library
         AOS.init({
-            duration: 1000,
-            once: true
-        });
-
-        // Form Handling (Simulation)
-        document.getElementById('towForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const btn = this.querySelector('button');
-            const originalText = btn.innerText;
-            
-            btn.innerText = 'Отправка...';
-            btn.style.opacity = '0.7';
-            
-            // Здесь можно добавить AJAX отправку в Telegram или на почту
-            setTimeout(() => {
-                alert('Заявка принята! Диспетчер свяжется с вами через 1 минуту.');
-                btn.innerText = originalText;
-                btn.style.opacity = '1';
-                this.reset();
-            }, 1500);
+            once: true,
+            offset: 80,
         });
     </script>
 </body>

@@ -21,7 +21,7 @@
             --dark-surface: #1E1E1E;
         }
         
-        /* ИСПРАВЛЕНИЕ: Запрещаем горизонтальный скролл для body и html */
+        /* Исправление горизонтального скролла */
         html, body {
             overflow-x: hidden;
             width: 100%;
@@ -32,8 +32,6 @@
             font-family: 'Roboto', sans-serif;
             background-color: var(--dark-bg);
             color: white;
-            /* Это уже было, но на всякий случай оставлю */
-            overflow-x: hidden; 
         }
 
         h1, h2, h3, .btn-text {
@@ -43,7 +41,6 @@
 
         /* Герой-секция */
         .hero-section {
-            /* Убедитесь, что файл images/tow-hero.jpg существует */
             background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url('images/tow-hero.jpg');
             background-attachment: fixed;
             background-position: center;
@@ -240,7 +237,7 @@
                     </ul>
                 </div>
                 <div class="relative h-96 rounded-xl overflow-hidden shadow-2xl border-4 border-gray-800" data-aos="fade-left">
-                     <img src="images/tow-about.jpg" alt="Погрузка эвакуатор" class="w-full h-full object-cover">
+                    <img src="images/tow-about.jpg" alt="Погрузка эвакуатор" class="w-full h-full object-cover">
                     <div class="absolute bottom-4 right-4 bg-red-600 text-white px-6 py-3 font-bold rounded animate-bounce">
                         <i class="fas fa-phone mr-2"></i> SOS
                     </div>
@@ -303,17 +300,17 @@
     <section id="contact" class="py-20 bg-[#0a0a0a] overflow-hidden">
         <div class="container mx-auto px-4">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-12 bg-[#1a1a1a] rounded-2xl overflow-hidden shadow-2xl">
-                <div class="p-10 flex flex-col justify-center bg-[#222]">
+                <div class="p-6 md:p-10 flex flex-col justify-center bg-[#222]">
                     <h2 class="text-3xl font-bold mb-6">Нужна <span class="text-accent">Помощь?</span></h2>
                     <p class="text-gray-400 mb-8">Если ситуация экстренная, лучше позвоните нам прямо сейчас. Мы на связи круглосуточно.</p>
                     
                     <a href="tel:+77474640078" class="flex items-center gap-4 mb-6 group">
-                        <div class="w-16 h-16 bg-accent rounded-full flex items-center justify-center text-black text-2xl group-hover:scale-110 transition">
+                        <div class="w-12 h-12 md:w-16 md:h-16 bg-accent rounded-full flex items-center justify-center text-black text-xl md:text-2xl group-hover:scale-110 transition shrink-0">
                             <i class="fas fa-phone-alt"></i>
                         </div>
                         <div>
-                            <p class="text-sm text-gray-400">Круглосуточный диспетчер</p>
-                            <p class="text-3xl font-bold text-white group-hover:text-accent transition">+7 747 464 0078</p>
+                            <p class="text-xs md:text-sm text-gray-400">Круглосуточный диспетчер</p>
+                            <p class="text-xl md:text-3xl font-bold text-white group-hover:text-accent transition whitespace-nowrap">+7 747 464 0078</p>
                         </div>
                     </a>
 
@@ -360,7 +357,7 @@
         AOS.init({
             once: true,
             offset: 80,
-            disable: 'mobile' // Опционально: можно отключить анимации на мобильных, если будут лагать
+            disable: 'mobile' 
         });
     </script>
 </body>
